@@ -136,7 +136,7 @@ def handle_images(parser, azure, content, folder_name):
             fname_with_folder = f'{folder_name}/export/images/{parser.item_id[i]}.jpeg'
             fname = f'export/images/{parser.item_id[i]}.jpeg'
             filename.append(fname)
-            if not os.path.exists(fname_with_folder):
+            if not os.path.exists(fname_with_folder) and img_url != '':
                 response = azure.get(img_url, stream=True)
                 if response.status_code == 200:
                     with open(fname_with_folder, 'wb') as img_file:
